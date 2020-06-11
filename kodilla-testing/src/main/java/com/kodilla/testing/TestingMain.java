@@ -9,10 +9,10 @@ public class TestingMain {
         int a = 10;
         int b = 5;
 
-        Calculator add1 = new Calculator(a,b);
+        Calculator test = new Calculator(a,b);
 
-        int result1 = add1.add();
-        int result2 = add1.subtract();
+        int result1 = test.add();
+        int result2 = test.subtract();
 
         if (result1 == a + b){
             System.out.println("Add test OK");
