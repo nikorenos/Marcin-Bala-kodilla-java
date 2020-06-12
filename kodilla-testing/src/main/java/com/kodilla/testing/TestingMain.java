@@ -6,6 +6,19 @@ import com.kodilla.testing.user.*;
 public class TestingMain {
     public static void main(String[] args){
 
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
         int a = 10;
         int b = 5;
 
@@ -27,10 +40,6 @@ public class TestingMain {
         }
 
 
-
-
-
-        /*
         SimpleUser simpleUser = new SimpleUser("theForumUser");
 
         String result = simpleUser.getUsername();
