@@ -33,10 +33,10 @@ public class CollectionTestSuite {
         OddNumbersExterminator test = new OddNumbersExterminator();
 
         //When
-        test.exterminate(numbers1);
+        ArrayList<Integer> retrievedList = test.exterminate(numbers1);
         System.out.println("Testing " + example1 + " + " + numbers1);
         //Then
-        Assert.assertEquals(example1, test.getEvenNumbers());
+        Assert.assertEquals(example1, retrievedList);
     }
     @Test
     public void testOddNumbersExterminatorNormalList(){
@@ -54,9 +54,9 @@ public class CollectionTestSuite {
         OddNumbersExterminator test = new OddNumbersExterminator();
 
         //When
-        test.exterminate(numbers2);
+        ArrayList<Integer> retrievedList = test.exterminate(numbers2);
         System.out.println("Testing " + example2 + " + " + numbers2);
         //Then
-        Assert.assertEquals(example2, test.getEvenNumbers());
+        Assert.assertEquals(example2, retrievedList);
     }
 }
