@@ -29,7 +29,7 @@ public class ShapeCollectorTestSuite {
         //Given
         Shape shape1 = new Circle();
         ArrayList<Shape> list1 = new ArrayList<Shape>();
-        ShapeCollector collection1 = new ShapeCollector(list1);
+        ShapeCollector collection1 = new ShapeCollector();
 
         //When
         collection1.addFigure(shape1);
@@ -44,7 +44,7 @@ public class ShapeCollectorTestSuite {
         //Given
         Shape shape1 = new Circle();
         ArrayList<Shape> list1 = new ArrayList<Shape>();
-        ShapeCollector collection1 = new ShapeCollector(list1);
+        ShapeCollector collection1 = new ShapeCollector();
         collection1.addFigure(shape1);
 
         //When
@@ -60,7 +60,8 @@ public class ShapeCollectorTestSuite {
         //Given
         Shape shape1 = new Circle();
         ArrayList<Shape> list1 = new ArrayList<Shape>();
-        ShapeCollector collection1 = new ShapeCollector(list1);
+        list1.add(shape1);
+        ShapeCollector collection1 = new ShapeCollector();
         collection1.addFigure(shape1);
 
         //When
@@ -73,6 +74,40 @@ public class ShapeCollectorTestSuite {
 
     //test 4
     @Test
+    public void testGetFigureBelowZero() {
+        //Given
+        Shape shape1 = new Circle();
+        ShapeCollector collection1 = new ShapeCollector();
+        collection1.addFigure(shape1);
+
+        //When
+        Shape retrievedFigure;
+        retrievedFigure = collection1.getFigure(-1);
+
+        //Then
+        Assert.assertEquals(null, retrievedFigure);
+    }
+
+    //test 5
+    @Test
+    public void testGetFigureOutOfRange() {
+        //Given
+        Shape shape1 = new Circle();
+        Shape shape2 = new Square();
+        ShapeCollector collection1 = new ShapeCollector();
+        collection1.addFigure(shape1);
+        collection1.addFigure(shape2);
+
+        //When
+        Shape retrievedFigure;
+        retrievedFigure = collection1.getFigure(10);
+
+        //Then
+        Assert.assertEquals(null, retrievedFigure);
+    }
+
+    //test 6
+    @Test
     public void testShowFigures() {
         //Given
         Shape shape1 = new Circle();
@@ -82,7 +117,10 @@ public class ShapeCollectorTestSuite {
         list1.add(shape1);
         list1.add(shape2);
         list1.add(shape3);
-        ShapeCollector collection1 = new ShapeCollector(list1);
+        ShapeCollector collection1 = new ShapeCollector();
+        collection1.addFigure(shape1);
+        collection1.addFigure(shape2);
+        collection1.addFigure(shape3);
 
         //When
         ArrayList<Shape> retrievedList = collection1.showFigures();

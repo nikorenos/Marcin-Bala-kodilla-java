@@ -71,10 +71,6 @@ public class ShapeCollector {
     private Shape shape;
     private ArrayList<Shape> list = new ArrayList<Shape>();
 
-    public ShapeCollector(ArrayList<Shape> list) {
-        this.list = list;
-    }
-
     public void addFigure(Shape shape){
         list.add(shape);
     }
@@ -90,7 +86,13 @@ public class ShapeCollector {
 
     //displays figure from collection from n list position
     public Shape getFigure(int n) {
-        return list.get(n);
+        if (n < 0) {
+            return null;
+        } else if (n > list.size()-1) {
+            return null;
+        } else {
+            return list.get(n);
+        }
     }
 
     //shows all figures in collection
@@ -114,13 +116,15 @@ public class ShapeCollector {
         Shape shape2 = new Square();
         Shape shape3 = new Triangle();
         ArrayList<Shape> list1 = new ArrayList<Shape>();
-        ShapeCollector collection1 = new ShapeCollector(list1);
+        ShapeCollector collection1 = new ShapeCollector();
         collection1.addFigure(shape1);
         collection1.addFigure(shape2);
         collection1.addFigure(shape3);
         //collection1.removeFigure(shape2);
 
-        System.out.println("Element in collection: " + collection1.getFigure(0));
+        System.out.println("Element in collection: " + collection1.getFigure(-1));
+        System.out.println("Element in collection: " + collection1.getFigure(2));
+        System.out.println("Element in collection: " + collection1.getFigure(10));
         System.out.println("Collection: " + collection1.showFigures());
         System.out.println("Number of shapes in collection: " + collection1.getListSize());
 
