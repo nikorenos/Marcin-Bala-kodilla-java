@@ -1,9 +1,11 @@
 package com.kodilla.testing.forum.statistics;
 
-import java.util.List;
+import com.kodilla.testing.forum.ForumUser;
+
+import java.util.ArrayList;
 
 public interface Statistics {
-    List<String> usersNames(); // list of users names
+    ArrayList<String> usersNames(); // list of users names
     int postsCount();          // total quantity of forum posts
     int commentsCount();       // total quantity of forum comments
 }

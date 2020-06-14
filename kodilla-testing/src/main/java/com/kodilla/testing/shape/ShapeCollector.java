@@ -86,9 +86,7 @@ public class ShapeCollector {
 
     //displays figure from collection from n list position
     public Shape getFigure(int n) {
-        if (n < 0) {
-            return null;
-        } else if (n > list.size()-1) {
+        if ((n < 0) || (n > list.size()-1)) {
             return null;
         } else {
             return list.get(n);
