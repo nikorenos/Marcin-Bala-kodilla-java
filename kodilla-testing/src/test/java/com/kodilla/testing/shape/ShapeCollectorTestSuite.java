@@ -3,6 +3,8 @@ package com.kodilla.testing.shape;
 import java.util.ArrayList;
 import org.junit.*;
 
+import static org.junit.Assert.assertNull;
+
 public class ShapeCollectorTestSuite {
 
     private static int testCounter = 0;
@@ -85,7 +87,7 @@ public class ShapeCollectorTestSuite {
         retrievedFigure = collection1.getFigure(-1);
 
         //Then
-        Assert.assertEquals(null, retrievedFigure);
+        assertNull(retrievedFigure);
     }
 
     //test 5
@@ -103,7 +105,7 @@ public class ShapeCollectorTestSuite {
         retrievedFigure = collection1.getFigure(10);
 
         //Then
-        Assert.assertEquals(null, retrievedFigure);
+        assertNull(retrievedFigure);
     }
 
     //test 6

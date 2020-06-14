@@ -5,10 +5,6 @@ import java.util.ArrayList;
 
 public class CalculateStatistics {
 
-    Statistics statistics;
-    public CalculateStatistics(Statistics statistics) {
-        this.statistics = statistics;
-    }
     private ArrayList<Double> stats = new ArrayList<Double>();
 
     public ArrayList<Double> calculateAdvStatistics(Statistics statistics) {

@@ -43,7 +43,7 @@ public class CalculateStatisticsTestSuite {
             example.add(0.0);
         }
 
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
+        CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
         //int u = calculateStatistics.statistics.usersNames().size();
@@ -89,7 +89,7 @@ public class CalculateStatisticsTestSuite {
             example.add(0.0);
         }
 
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
+        CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
         //int u = calculateStatistics.statistics.usersNames().size();
@@ -134,7 +134,7 @@ public class CalculateStatisticsTestSuite {
             example.add(0.0);
         }
 
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
+        CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
         //int u = calculateStatistics.statistics.usersNames().size();
@@ -179,7 +179,7 @@ public class CalculateStatisticsTestSuite {
             example.add(0.0);
         }
 
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
+        CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
         //int u = calculateStatistics.statistics.usersNames().size();
@@ -224,7 +224,7 @@ public class CalculateStatisticsTestSuite {
             example.add(0.0);
         }
 
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
+        CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
         //int u = calculateStatistics.statistics.usersNames().size();
@@ -266,7 +266,7 @@ public class CalculateStatisticsTestSuite {
             example.add(0.0);
         }
 
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
+        CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
         //int u = calculateStatistics.statistics.usersNames().size();
@@ -313,7 +313,7 @@ public class CalculateStatisticsTestSuite {
             example.add(0.0);
         }
 
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
+        CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
         //int u = calculateStatistics.statistics.usersNames().size();
