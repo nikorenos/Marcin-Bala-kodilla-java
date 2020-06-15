@@ -5,8 +5,58 @@ import java.util.ArrayList;
 
 public class CalculateStatistics {
 
-    private ArrayList<Double> stats = new ArrayList<Double>();
+    private int numberOfUsers;
+    private Integer numberOfPosts;
+    private Integer numberOfComments;
+    private Double numberOfPostsPerUser;
+    private Double numberOfCommentsPerUser;
+    private Double numberOfCommentsPerPost;
 
+    private ArrayList<Double> stats = new ArrayList<Double>();
+    public void calculateAdvStatistics(Statistics statistics) {
+        numberOfUsers = statistics.usersNames().size();
+        numberOfPosts = statistics.postsCount();
+        numberOfComments = statistics.commentsCount();
+
+        if (numberOfUsers > 0) {
+            numberOfPostsPerUser = (double)numberOfPosts/numberOfUsers;
+            numberOfCommentsPerUser = (double)numberOfComments/numberOfUsers;
+        } else {
+            numberOfPostsPerUser = 0.0;
+            numberOfCommentsPerUser = 0.0;
+        }
+        if (numberOfPosts > 0) {
+            numberOfCommentsPerPost = (double)numberOfComments/numberOfPosts;
+        } else {
+            numberOfCommentsPerPost = 0.0;
+        }
+    }
+
+    public int getNumberOfUsers() {
+        return numberOfUsers;
+    }
+
+    public Integer getNumberOfPosts() {
+        return numberOfPosts;
+    }
+
+    public Integer getNumberOfComments() {
+        return numberOfComments;
+    }
+    public Double getNumberOfPostsPerUser() {
+        return numberOfPostsPerUser;
+    }
+
+    public Double getNumberOfCommentsPerUser() {
+        return numberOfCommentsPerUser;
+    }
+
+    public Double getNumberOfCommentsPerPost() {
+        return numberOfCommentsPerPost;
+    }
+
+    /*
+    private ArrayList<Double> stats = new ArrayList<Double>();
     public ArrayList<Double> calculateAdvStatistics(Statistics statistics) {
         stats.add((double)statistics.usersNames().size());
         stats.add((double)statistics.postsCount());
@@ -29,6 +79,7 @@ public class CalculateStatistics {
 
         return stats;
     }
+     */
 
     public static void main(String[] args) {
 
