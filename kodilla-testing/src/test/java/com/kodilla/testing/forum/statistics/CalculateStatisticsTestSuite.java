@@ -1,305 +1,203 @@
 package com.kodilla.testing.forum.statistics;
 
+import com.kodilla.testing.library.Book;
 import org.junit.Assert;
 import org.junit.Test;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class CalculateStatisticsTestSuite {
 
+    private ArrayList<String> generateListOfUsers(int usersQuantity) {
+        ArrayList<String> resultList = new ArrayList<String>();
+        for(int n = 1; n <= usersQuantity; n++){
+            resultList.add("User " + n);
+        }
+        return resultList;
+    }
 
-    @Test //posts = 0
-    public void testCalculateStatisticsWithMock1() {
+
+    @Test
+    public void testCalculateStatisticsWhenPostsZero() {
         //Given
         Statistics statisticsMock = mock(Statistics.class);
-        ArrayList<String> listUsers = new ArrayList<String>();
-        listUsers.add("User 1");
-        listUsers.add("User 2");
-        listUsers.add("User 3");
+        ArrayList<String> listUsers = generateListOfUsers(50);
         int quantityOfPosts = 0;
         int quantityOfComments = 0;
+        Double NumberOfPostsPerUser = 0.0;
+        Double NumberOfCommentsPerUser = 0.0;
+        Double NumberOfCommentsPerPost = 0.0;
         when(statisticsMock.usersNames()).thenReturn(listUsers);
         when(statisticsMock.postsCount()).thenReturn(quantityOfPosts);
         when(statisticsMock.commentsCount()).thenReturn(quantityOfComments);
-
-
         CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
         calculateStatistics.calculateAdvStatistics(statisticsMock);
 
-
         //Then
-        //System.out.println(example);
-        //System.out.println(stat);
-        Assert.assertEquals(3, calculateStatistics.getNumberOfUsers());
+        Assert.assertEquals(50, calculateStatistics.getNumberOfUsers());
+        Assert.assertEquals(NumberOfPostsPerUser, calculateStatistics.getNumberOfPostsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerUser, calculateStatistics.getNumberOfCommentsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerPost, calculateStatistics.getNumberOfCommentsPerPost());
     }
-    /*
 
-    @Test //posts = 1000
-    public void testCalculateStatisticsWithMock2() {
+    @Test
+    public void testCalculateStatisticsWhenPosts1000() {
         //Given
         Statistics statisticsMock = mock(Statistics.class);
-        ArrayList<String> listUsers = new ArrayList<String>();
-        listUsers.add("User 1");
-        listUsers.add("User 2");
-        listUsers.add("User 3");
+        ArrayList<String> listUsers = generateListOfUsers(1000);
+        int quantityOfUsers = listUsers.size();
         int quantityOfPosts = 1000;
+        int quantityOfComments = 1000;
+        Double NumberOfPostsPerUser = (double)quantityOfPosts/listUsers.size();
+        Double NumberOfCommentsPerUser = (double)quantityOfComments/listUsers.size();
+        Double NumberOfCommentsPerPost = (double)quantityOfComments/quantityOfPosts;
+        when(statisticsMock.usersNames()).thenReturn(listUsers);
+        when(statisticsMock.postsCount()).thenReturn(quantityOfPosts);
+        when(statisticsMock.commentsCount()).thenReturn(quantityOfComments);
+        CalculateStatistics calculateStatistics = new CalculateStatistics();
+
+        //When
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
+
+        //Then
+        Assert.assertEquals(quantityOfUsers, calculateStatistics.getNumberOfUsers());
+        Assert.assertEquals(NumberOfPostsPerUser, calculateStatistics.getNumberOfPostsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerUser, calculateStatistics.getNumberOfCommentsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerPost, calculateStatistics.getNumberOfCommentsPerPost());
+    }
+
+    @Test
+    public void testCalculateStatisticsWhenCommentsZero() {
+        //Given
+        Statistics statisticsMock = mock(Statistics.class);
+        ArrayList<String> listUsers = generateListOfUsers(500);
+        int quantityOfUsers = listUsers.size();
+        int quantityOfPosts = 2500;
         int quantityOfComments = 0;
+        Double NumberOfPostsPerUser = (double)quantityOfPosts/listUsers.size();
+        Double NumberOfCommentsPerUser = (double)quantityOfComments/listUsers.size();
+        Double NumberOfCommentsPerPost = (double)quantityOfComments/quantityOfPosts;
         when(statisticsMock.usersNames()).thenReturn(listUsers);
         when(statisticsMock.postsCount()).thenReturn(quantityOfPosts);
         when(statisticsMock.commentsCount()).thenReturn(quantityOfComments);
-        ArrayList<Double> example = new ArrayList<Double>();
-        example.add((double)listUsers.size());
-        example.add((double)quantityOfPosts);
-        example.add((double)quantityOfComments);
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfPosts/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfComments/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (quantityOfPosts > 0) {
-            example.add((double)quantityOfComments/quantityOfPosts);
-        } else {
-            example.add(0.0);
-        }
-
         CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
-        //ArrayList<Double> stat = calculateStatistics.calculateAdvStatistics(statisticsMock);
-
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
 
         //Then
-        //System.out.println(stat);
-        //Assert.assertEquals(example, stat);
+        Assert.assertEquals(quantityOfUsers, calculateStatistics.getNumberOfUsers());
+        Assert.assertEquals(NumberOfPostsPerUser, calculateStatistics.getNumberOfPostsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerUser, calculateStatistics.getNumberOfCommentsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerPost, calculateStatistics.getNumberOfCommentsPerPost());
     }
 
-    @Test //comments = 0
-    public void testCalculateStatisticsWithMock3() {
+    @Test
+    public void testCalculateStatisticsWhenNumberOfCommentsLesserNumberOfPosts() {
         //Given
         Statistics statisticsMock = mock(Statistics.class);
-        ArrayList<String> listUsers = new ArrayList<String>();
-        listUsers.add("User 1");
-        listUsers.add("User 2");
-        listUsers.add("User 3");
-        int quantityOfPosts = 1000;
-        int quantityOfComments = 0;
+        ArrayList<String> listUsers = generateListOfUsers(1500);
+        int quantityOfUsers = listUsers.size();
+        int quantityOfPosts = 2500;
+        int quantityOfComments = 2000;
+        Double NumberOfPostsPerUser = (double)quantityOfPosts/listUsers.size();
+        Double NumberOfCommentsPerUser = (double)quantityOfComments/listUsers.size();
+        Double NumberOfCommentsPerPost = (double)quantityOfComments/quantityOfPosts;
         when(statisticsMock.usersNames()).thenReturn(listUsers);
         when(statisticsMock.postsCount()).thenReturn(quantityOfPosts);
         when(statisticsMock.commentsCount()).thenReturn(quantityOfComments);
-        ArrayList<Double> example = new ArrayList<Double>();
-        example.add((double)listUsers.size());
-        example.add((double)quantityOfPosts);
-        example.add((double)quantityOfComments);
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfPosts/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfComments/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (quantityOfPosts > 0) {
-            example.add((double)quantityOfComments/quantityOfPosts);
-        } else {
-            example.add(0.0);
-        }
-
         CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
-        ArrayList<Double> stat = calculateStatistics.calculateAdvStatistics(statisticsMock);
-
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
 
         //Then
-        System.out.println(stat);
-        Assert.assertEquals(example, stat);
+        Assert.assertEquals(quantityOfUsers, calculateStatistics.getNumberOfUsers());
+        Assert.assertEquals(NumberOfPostsPerUser, calculateStatistics.getNumberOfPostsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerUser, calculateStatistics.getNumberOfCommentsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerPost, calculateStatistics.getNumberOfCommentsPerPost());
     }
 
-    @Test //comments < posts
-    public void testCalculateStatisticsWithMock4() {
+    @Test
+    public void testCalculateStatisticsWhenNumberOfCommentsBiggerNumberOfPosts() {
         //Given
         Statistics statisticsMock = mock(Statistics.class);
-        ArrayList<String> listUsers = new ArrayList<String>();
-        listUsers.add("User 1");
-        listUsers.add("User 2");
-        listUsers.add("User 3");
-        int quantityOfPosts = 500;
-        int quantityOfComments = 200;
+        ArrayList<String> listUsers = generateListOfUsers(1500);
+        int quantityOfUsers = listUsers.size();
+        int quantityOfPosts = 2500;
+        int quantityOfComments = 6000;
+        Double NumberOfPostsPerUser = (double)quantityOfPosts/listUsers.size();
+        Double NumberOfCommentsPerUser = (double)quantityOfComments/listUsers.size();
+        Double NumberOfCommentsPerPost = (double)quantityOfComments/quantityOfPosts;
         when(statisticsMock.usersNames()).thenReturn(listUsers);
         when(statisticsMock.postsCount()).thenReturn(quantityOfPosts);
         when(statisticsMock.commentsCount()).thenReturn(quantityOfComments);
-        ArrayList<Double> example = new ArrayList<Double>();
-        example.add((double)listUsers.size());
-        example.add((double)quantityOfPosts);
-        example.add((double)quantityOfComments);
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfPosts/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfComments/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (quantityOfPosts > 0) {
-            example.add((double)quantityOfComments/quantityOfPosts);
-        } else {
-            example.add(0.0);
-        }
-
         CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
-        ArrayList<Double> stat = calculateStatistics.calculateAdvStatistics(statisticsMock);
-
-
-        //Then
-        System.out.println(stat);
-        Assert.assertEquals(example, stat);
-    }
-
-    @Test //posts < comments
-    public void testCalculateStatisticsWithMock5() {
-        //Given
-        Statistics statisticsMock = mock(Statistics.class);
-        ArrayList<String> listUsers = new ArrayList<String>();
-        listUsers.add("User 1");
-        listUsers.add("User 2");
-        listUsers.add("User 3");
-        int quantityOfPosts = 200;
-        int quantityOfComments = 500;
-        when(statisticsMock.usersNames()).thenReturn(listUsers);
-        when(statisticsMock.postsCount()).thenReturn(quantityOfPosts);
-        when(statisticsMock.commentsCount()).thenReturn(quantityOfComments);
-        ArrayList<Double> example = new ArrayList<Double>();
-        example.add((double)listUsers.size());
-        example.add((double)quantityOfPosts);
-        example.add((double)quantityOfComments);
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfPosts/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfComments/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (quantityOfPosts > 0) {
-            example.add((double)quantityOfComments/quantityOfPosts);
-        } else {
-            example.add(0.0);
-        }
-
-        CalculateStatistics calculateStatistics = new CalculateStatistics();
-
-        //When
-        ArrayList<Double> stat = calculateStatistics.calculateAdvStatistics(statisticsMock);
-
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
 
         //Then
-        System.out.println(stat);
-        Assert.assertEquals(example, stat);
+        Assert.assertEquals(quantityOfUsers, calculateStatistics.getNumberOfUsers());
+        Assert.assertEquals(NumberOfPostsPerUser, calculateStatistics.getNumberOfPostsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerUser, calculateStatistics.getNumberOfCommentsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerPost, calculateStatistics.getNumberOfCommentsPerPost());
     }
 
-    @Test //users = 0
-    public void testCalculateStatisticsWithMock6() {
+    @Test
+    public void testCalculateStatisticsWhenNumberOfUsersZero() {
         //Given
         Statistics statisticsMock = mock(Statistics.class);
-        ArrayList<String> listUsers = new ArrayList<String>();
+        ArrayList<String> listUsers = generateListOfUsers(0);
+        int quantityOfUsers = listUsers.size();
         int quantityOfPosts = 0;
         int quantityOfComments = 0;
+        Double NumberOfPostsPerUser = 0.0;
+        Double NumberOfCommentsPerUser = 0.0;
+        Double NumberOfCommentsPerPost = 0.0;
         when(statisticsMock.usersNames()).thenReturn(listUsers);
         when(statisticsMock.postsCount()).thenReturn(quantityOfPosts);
         when(statisticsMock.commentsCount()).thenReturn(quantityOfComments);
-        ArrayList<Double> example = new ArrayList<Double>();
-        example.add((double)listUsers.size());
-        example.add((double)quantityOfPosts);
-        example.add((double)quantityOfComments);
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfPosts/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfComments/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (quantityOfPosts > 0) {
-            example.add((double)quantityOfComments/quantityOfPosts);
-        } else {
-            example.add(0.0);
-        }
-
         CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
-        ArrayList<Double> stat = calculateStatistics.calculateAdvStatistics(statisticsMock);
-
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
 
         //Then
-        System.out.println(stat);
-        Assert.assertEquals(example, stat);
+        Assert.assertEquals(quantityOfUsers, calculateStatistics.getNumberOfUsers());
+        Assert.assertEquals(NumberOfPostsPerUser, calculateStatistics.getNumberOfPostsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerUser, calculateStatistics.getNumberOfCommentsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerPost, calculateStatistics.getNumberOfCommentsPerPost());
     }
 
-    @Test //users = 100
-    public void testCalculateStatisticsWithMock7() {
+    @Test
+    public void testCalculateStatisticsWhenNumberOfUsers100() {
         //Given
         Statistics statisticsMock = mock(Statistics.class);
-        ArrayList<String> listUsers = new ArrayList<String>();
-        for(int n = 0; n < 100; n++){
-            String name = "User ";
-            name = name + n;
-            listUsers.add(name);
-        }
-        int quantityOfPosts = 2500;
-        int quantityOfComments = 1000;
+        ArrayList<String> listUsers = generateListOfUsers(100);
+        int quantityOfUsers = listUsers.size();
+        int quantityOfPosts = 500;
+        int quantityOfComments = 300;
+        Double NumberOfPostsPerUser = (double)quantityOfPosts/listUsers.size();
+        Double NumberOfCommentsPerUser = (double)quantityOfComments/listUsers.size();
+        Double NumberOfCommentsPerPost = (double)quantityOfComments/quantityOfPosts;
         when(statisticsMock.usersNames()).thenReturn(listUsers);
         when(statisticsMock.postsCount()).thenReturn(quantityOfPosts);
         when(statisticsMock.commentsCount()).thenReturn(quantityOfComments);
-        ArrayList<Double> example = new ArrayList<Double>();
-        example.add((double)listUsers.size());
-        example.add((double)quantityOfPosts);
-        example.add((double)quantityOfComments);
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfPosts/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (listUsers.size() > 0) {
-            example.add((double)quantityOfComments/listUsers.size());
-        } else {
-            example.add(0.0);
-        }
-        if (quantityOfPosts > 0) {
-            example.add((double)quantityOfComments/quantityOfPosts);
-        } else {
-            example.add(0.0);
-        }
-
         CalculateStatistics calculateStatistics = new CalculateStatistics();
 
         //When
-        ArrayList<Double> stat = calculateStatistics.calculateAdvStatistics(statisticsMock);
-
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
 
         //Then
-        System.out.println(stat);
-        Assert.assertEquals(example, stat);
+        Assert.assertEquals(quantityOfUsers, calculateStatistics.getNumberOfUsers());
+        Assert.assertEquals(NumberOfPostsPerUser, calculateStatistics.getNumberOfPostsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerUser, calculateStatistics.getNumberOfCommentsPerUser());
+        Assert.assertEquals(NumberOfCommentsPerPost, calculateStatistics.getNumberOfCommentsPerPost());
     }
-
-     */
 }

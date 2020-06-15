@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class CalculateStatistics {
 
     private int numberOfUsers;
-    private Integer numberOfPosts;
-    private Integer numberOfComments;
+    private int numberOfPosts;
+    private int numberOfComments;
     private Double numberOfPostsPerUser;
     private Double numberOfCommentsPerUser;
     private Double numberOfCommentsPerPost;
@@ -35,22 +35,18 @@ public class CalculateStatistics {
     public int getNumberOfUsers() {
         return numberOfUsers;
     }
-
-    public Integer getNumberOfPosts() {
+    public int getNumberOfPosts() {
         return numberOfPosts;
     }
-
-    public Integer getNumberOfComments() {
+    public int getNumberOfComments() {
         return numberOfComments;
     }
     public Double getNumberOfPostsPerUser() {
         return numberOfPostsPerUser;
     }
-
     public Double getNumberOfCommentsPerUser() {
         return numberOfCommentsPerUser;
     }
-
     public Double getNumberOfCommentsPerPost() {
         return numberOfCommentsPerPost;
     }
