@@ -11,7 +11,6 @@ public class ArrayOperationsTestSuite {
     public void testGetAverage() {
         //Given
         int[] marks = {5,5,5,4,4,4};
-        int n = marks[0];
 
         //When
         OptionalDouble average = ArrayOperations.getAverage(marks);
@@ -19,8 +18,6 @@ public class ArrayOperationsTestSuite {
         //Then
         OptionalDouble expectedAverage = OptionalDouble.of(4.5);
         Assert.assertEquals(expectedAverage, average);
-        //System.out.println("test " + n);
     }
-
 
 }
