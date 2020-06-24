@@ -6,9 +6,14 @@ import java.util.stream.IntStream;
 public interface ArrayOperations {
     static double getAverage(int[] numbers) {
 
-        if (numbers.length > 0) {
-            IntStream marks = IntStream.range(0, numbers.length);
-            marks.forEach(s -> System.out.println(numbers[s]));
+        IntStream.range(0, numbers.length).forEach(s -> System.out.println(numbers[s]));
+
+        return IntStream.range(0, numbers.length)
+                .map(n -> numbers[n])
+                .average().orElse(0);
+
+        /*if (numbers.length > 0) {
+            IntStream.range(0, numbers.length).forEach(s -> System.out.println(numbers[s]));
             //Arrays.stream(numbers)
             //.forEach(s -> System.out.println(s));
 
@@ -18,7 +23,7 @@ public interface ArrayOperations {
 
             return average.getAsDouble();
         }
-        return 0;
+        return 0;*/
     }
 
 }
