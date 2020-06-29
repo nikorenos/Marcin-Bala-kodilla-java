@@ -11,21 +11,19 @@ public class FindFlight {
 
     public void findFlight (Flight flight) throws RouteNotFoundException {
         Boolean flightAvailable = false;
-        Map<String,Boolean> flights = new HashMap<>();
+        Map<String, Boolean> flights = new HashMap<>();
         flights.put("Warsaw", false);
         flights.put("Moscow", true);
         flights.put("New York", true);
 
-        for(Map.Entry<String, Boolean> entry : flights.entrySet()) {
-            if ((entry.getKey() == flight.getArrivalAirport()) && (entry.getValue() == true)) {
-                flightAvailable = true;
-            }
-        }
-        if (flightAvailable) {
-            System.out.println("Flight to " + flight.getArrivalAirport() + " is available!");
+        //System.out.println((flight.getArrivalAirport()) + " " + flights.get(flight.getArrivalAirport()));
+
+        if ((flights.containsKey(flight.getArrivalAirport())) && (flights.get(flight.getArrivalAirport()))) {
+                System.out.println("Flight to " + flight.getArrivalAirport() + " is available!");
         } else {
             throw new RouteNotFoundException("Flight to " + flight.getArrivalAirport() + " is not available!");
         }
+
     }
 
     public static void main(String[] args) {
