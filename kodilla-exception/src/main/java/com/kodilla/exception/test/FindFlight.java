@@ -11,7 +11,7 @@ public class FindFlight {
 
     public void findFlight (Flight flight) throws RouteNotFoundException {
         Boolean flightAvailable = false;
-        Map<String, Boolean> flights = new HashMap<>();
+        Map<String,Boolean> flights = new HashMap<>();
         flights.put("Warsaw", false);
         flights.put("Moscow", true);
         flights.put("New York", true);
