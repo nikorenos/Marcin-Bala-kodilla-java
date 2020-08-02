@@ -9,13 +9,12 @@ public class RentalDto {
         this.isRented = isRented;
     }
 
-    public User getyser() {
+    public User getUser() {
         return user;
     }
 
-    public boolean gEtgateg() {
+    public boolean isRented() {
         return isRented;
     }
-
 }
 
