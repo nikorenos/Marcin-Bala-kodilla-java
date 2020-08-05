@@ -1,46 +1,46 @@
 package com.kodilla.good.patterns.findflight;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 
 public class FindFlight {
 
-    public void findFlightFrom (HashMap<Integer,Flight> flights, String departureAirport)  {
+    public void findFlightFrom (HashSet<Flight> flights, String departureAirport)  {
         System.out.println("Flights from " + departureAirport + ":");
-        flights.entrySet().stream()
-                .filter(flight -> flight.getValue().getDepartureAirport().equals(departureAirport))
-                .forEach(flight -> System.out.println("Flight no." + flight.getKey() +
-                        ", " + flight.getValue().getDepartureAirport()
-                        + " to " + flight.getValue().getArrivalAirport()));
+        flights.stream()
+                .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
+                .forEach(flight -> System.out.println("Flight no." + flight.getId() +
+                        ", " + flight.getDepartureAirport()
+                        + " to " + flight.getArrivalAirport()));
 
     }
 
-    public void findFlightTo (HashMap<Integer,Flight> flights, String arrivalAirport)  {
+    public void findFlightTo (HashSet<Flight> flights, String arrivalAirport)  {
         System.out.println("Flights to " + arrivalAirport + ":");
-        flights.entrySet().stream()
-                .filter(flight -> flight.getValue().getArrivalAirport().equals(arrivalAirport))
-                .forEach(flight -> System.out.println("Flight no." + flight.getKey() +
-                        ", " + flight.getValue().getDepartureAirport()
-                        + " to " + flight.getValue().getArrivalAirport()));
+        flights.stream()
+                .filter(flight -> flight.getArrivalAirport().equals(arrivalAirport))
+                .forEach(flight -> System.out.println("Flight no." + flight.getId() +
+                        ", " + flight.getDepartureAirport()
+                        + " to " + flight.getArrivalAirport()));
 
     }
 
-    public void findFlightToWithChange (HashMap<Integer,Flight> flights, String departureAirport, String arrivalAirport)  {
+    public void findFlightToWithChange (HashSet<Flight> flights, String departureAirport, String arrivalAirport)  {
         System.out.println("Flights from " + departureAirport + " to " + arrivalAirport + " with change:");
-        flights.entrySet().stream()
-                .filter(flight -> flight.getValue().getArrivalAirport().equals(arrivalAirport) || flight.getValue().getDepartureAirport().equals(departureAirport))
-                .forEach(flight -> System.out.println("Flight no." + flight.getKey() +
-                        ", " + flight.getValue().getDepartureAirport()
-                        + " to " + flight.getValue().getArrivalAirport()));
+        flights.stream()
+                .filter(flight -> flight.getArrivalAirport().equals(arrivalAirport) || flight.getDepartureAirport().equals(departureAirport))
+                .forEach(flight -> System.out.println("Flight no." + flight.getId() +
+                        ", " + flight.getDepartureAirport()
+                        + " to " + flight.getArrivalAirport()));
     }
 
     public static void main(String[] args) {
 
         FlightsSupplier flightsSupplier = new FlightsSupplier();
-        HashMap<Integer,Flight> flights = flightsSupplier.flightsList();
+        HashSet<Flight> flights = flightsSupplier.flightsList();
         FindFlight checkFlight = new FindFlight();
         checkFlight.findFlightFrom(flights, "Gdańsk");
         checkFlight.findFlightTo(flights, "Gdańsk");
