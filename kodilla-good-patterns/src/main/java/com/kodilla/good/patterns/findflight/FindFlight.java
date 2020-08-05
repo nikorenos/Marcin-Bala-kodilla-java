@@ -51,6 +51,7 @@ public class FindFlight {
 
         System.out.println("Flights from " + departureAirport + " to " + arrivalAirport + " with change:");
         flights.entrySet().stream()
+                //.reduce(flight -> flight.getValue().getArrivalAirport().equals(arrivalAirport) && flight.getValue().getDepartureAirport().equals(departureAirport))
                 .filter(flight -> flight.getValue().getArrivalAirport().equals(arrivalAirport) || flight.getValue().getDepartureAirport().equals(departureAirport))
                 .forEach(flight -> System.out.println("Flight no." + flight.getKey() +
                         ", " + flight.getValue().getDepartureAirport()
