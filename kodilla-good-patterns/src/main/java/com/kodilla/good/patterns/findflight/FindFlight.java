@@ -8,23 +8,37 @@ import java.util.Map;
 
 public class FindFlight {
 
-    public void findFlightFrom (HashSet<Flight> flights, String departureAirport)  {
-        System.out.println("Flights from " + departureAirport + ":");
+    public HashSet<Flight> findFlightFrom (HashSet<Flight> flights, String departureAirport)  {
+        HashSet<Flight> findFlightFrom = new HashSet<>();
+
         flights.stream()
                 .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
-                .forEach(flight -> System.out.println("Flight no." + flight.getId() +
-                        ", " + flight.getDepartureAirport()
-                        + " to " + flight.getArrivalAirport()));
+                .forEach(flight -> findFlightFrom.add(flight));
+
+        System.out.println("Flights from " + departureAirport + ":");
+        for(Flight flight:findFlightFrom){
+            System.out.println("Flight no." + flight.getId() +
+                    ", " + flight.getDepartureAirport()
+                    + " to " + flight.getArrivalAirport());
+        }
+        return findFlightFrom;
 
     }
 
-    public void findFlightTo (HashSet<Flight> flights, String arrivalAirport)  {
-        System.out.println("Flights to " + arrivalAirport + ":");
+    public HashSet<Flight> findFlightTo (HashSet<Flight> flights, String arrivalAirport)  {
+        HashSet<Flight> findFlightFrom = new HashSet<>();
+
         flights.stream()
                 .filter(flight -> flight.getArrivalAirport().equals(arrivalAirport))
-                .forEach(flight -> System.out.println("Flight no." + flight.getId() +
-                        ", " + flight.getDepartureAirport()
-                        + " to " + flight.getArrivalAirport()));
+                .forEach(flight -> findFlightFrom.add(flight));
+
+        System.out.println("Flights to " + arrivalAirport + ":");
+        for(Flight flight:findFlightFrom){
+            System.out.println("Flight no." + flight.getId() +
+                    ", " + flight.getArrivalAirport()
+                    + " to " + flight.getDepartureAirport());
+        }
+        return findFlightFrom;
 
     }
 
