@@ -1,64 +1,72 @@
 package com.kodilla.good.patterns.findflight;
 
-import java.util.ArrayList;
+
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 
 
 public class FindFlight {
 
-    public HashSet<Flight> findFlightFrom (HashSet<Flight> flights, String departureAirport)  {
+    public HashSet<Flight> findFlightFrom (HashSet<Flight> flights, String departureAirport) {
         HashSet<Flight> findFlightFrom = new HashSet<>();
 
         flights.stream()
                 .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
-                .forEach(flight -> findFlightFrom.add(flight));
+                .forEach(findFlightFrom::add);
 
-        System.out.println("Flights from " + departureAirport + ":");
-        for(Flight flight:findFlightFrom){
-            System.out.println("Flight no." + flight.getId() +
-                    ", " + flight.getDepartureAirport()
-                    + " to " + flight.getArrivalAirport());
-        }
         return findFlightFrom;
-
     }
 
-    public HashSet<Flight> findFlightTo (HashSet<Flight> flights, String arrivalAirport)  {
+    public HashSet<Flight> findFlightTo (HashSet<Flight> flights, String arrivalAirport) {
         HashSet<Flight> findFlightFrom = new HashSet<>();
 
         flights.stream()
                 .filter(flight -> flight.getArrivalAirport().equals(arrivalAirport))
-                .forEach(flight -> findFlightFrom.add(flight));
+                .forEach(findFlightFrom::add);
 
-        System.out.println("Flights to " + arrivalAirport + ":");
-        for(Flight flight:findFlightFrom){
-            System.out.println("Flight no." + flight.getId() +
-                    ", " + flight.getArrivalAirport()
-                    + " to " + flight.getDepartureAirport());
-        }
         return findFlightFrom;
-
     }
 
-    public void findFlightToWithChange (HashSet<Flight> flights, String departureAirport, String arrivalAirport)  {
-        System.out.println("Flights from " + departureAirport + " to " + arrivalAirport + " with change:");
-        flights.stream()
-                .filter(flight -> flight.getArrivalAirport().equals(arrivalAirport) || flight.getDepartureAirport().equals(departureAirport))
-                .forEach(flight -> System.out.println("Flight no." + flight.getId() +
-                        ", " + flight.getDepartureAirport()
-                        + " to " + flight.getArrivalAirport()));
+    public HashSet<Flight> findFlightToWithChange (HashSet<Flight> flights, String departureAirport, String arrivalAirport) {
+        HashSet<Flight> flightsFrom = findFlightFrom(flights, departureAirport);
+        HashSet<Flight> flightsTo = findFlightTo(flights, arrivalAirport);
+        HashSet<Flight> flightsWithChange = new HashSet<>();
+
+        for (Flight flightFrom : flightsFrom) {
+            for (Flight flightTo : flightsTo) {
+                if (flightFrom.getArrivalAirport().equals(flightTo.getDepartureAirport())) {
+                    flightsWithChange.add(flightFrom);
+                }
+            }
+        }
+        for (Flight flightTo : flightsTo) {
+            for (Flight flightFrom : flightsFrom) {
+                if (flightTo.getDepartureAirport().equals(flightFrom.getArrivalAirport())) {
+                    flightsWithChange.add(flightTo);
+                }
+            }
+        }
+        return flightsWithChange;
     }
 
     public static void main(String[] args) {
 
+        String departureAirport = "Gdańsk";
+        String arrivalAirport = "Kraków";
+
         FlightsSupplier flightsSupplier = new FlightsSupplier();
-        HashSet<Flight> flights = flightsSupplier.flightsList();
+        HashSet<Flight>  flights = flightsSupplier.flightsList();
         FindFlight checkFlight = new FindFlight();
-        checkFlight.findFlightFrom(flights, "Gdańsk");
-        checkFlight.findFlightTo(flights, "Gdańsk");
-        checkFlight.findFlightToWithChange(flights, "Gdańsk", "Kraków");
+        DisplayFlights displayFlights = new DisplayFlights();
+
+        HashSet<Flight> findFlightFrom = checkFlight.findFlightFrom(flights, departureAirport);
+        displayFlights.displayFlightsFrom(findFlightFrom, departureAirport);
+
+        HashSet<Flight> findFlightTo = checkFlight.findFlightTo(flights, arrivalAirport);
+        displayFlights.displayFlightsTo(findFlightTo, arrivalAirport);
+
+        HashSet<Flight> findFlightWithChange = checkFlight.findFlightToWithChange(flights, departureAirport, arrivalAirport);
+        displayFlights.displayFlightsWithChange(findFlightWithChange, departureAirport, arrivalAirport);
+
 
 
 
