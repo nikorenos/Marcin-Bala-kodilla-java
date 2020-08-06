@@ -67,32 +67,5 @@ public class FindFlight {
         HashSet<Flight> findFlightWithChange = checkFlight.findFlightToWithChange(flights, departureAirport, arrivalAirport);
         displayFlights.displayFlightsWithChange(findFlightWithChange, departureAirport, arrivalAirport);
 
-
-
-
-
-
-
-
-
-
-
-        /*System.out.println();
-        Flight flight1 = new Flight(1,"Gdańsk", "Warszawa");
-        Flight flight2 = new Flight(2,"Warszawa", "Kraków");
-        Flight flight3 = new Flight(3,"Gdańsk", "Kraków");
-        Flight flight4 = new Flight(4,"Kraków", "Gdańsk");
-        Flight flight5 = new Flight(5,"Gdańsk", "Poznań");
-        ArrayList<Flight> list = new ArrayList<>();
-        list.add(flight1);
-        list.add(flight2);
-        list.add(flight3);
-        list.add(flight4);
-        list.add(flight5);
-
-        list.stream()
-                .filter(flight -> flight.getDepartureAirport().equals("Gdańsk") || flight.getArrivalAirport().equals("Kraków"))
-                .forEach(s -> System.out.println(s));*/
-
     }
 }
