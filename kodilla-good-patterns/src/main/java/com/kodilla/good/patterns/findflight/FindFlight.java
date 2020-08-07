@@ -35,12 +35,6 @@ public class FindFlight {
             for (Flight flightTo : flightsTo) {
                 if (flightFrom.getArrivalAirport().equals(flightTo.getDepartureAirport())) {
                     flightsWithChange.add(flightFrom);
-                }
-            }
-        }
-        for (Flight flightTo : flightsTo) {
-            for (Flight flightFrom : flightsFrom) {
-                if (flightTo.getDepartureAirport().equals(flightFrom.getArrivalAirport())) {
                     flightsWithChange.add(flightTo);
                 }
             }
