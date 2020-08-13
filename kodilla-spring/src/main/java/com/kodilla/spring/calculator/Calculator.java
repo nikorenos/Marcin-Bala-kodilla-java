@@ -5,10 +5,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component//tworzy beana
 public class Calculator {
 
-    @Autowired
+    @Autowired//pobierz po typie
     private Display display;
 
     public double add (double a, double b) {
