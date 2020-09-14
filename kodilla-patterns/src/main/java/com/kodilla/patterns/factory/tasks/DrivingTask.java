@@ -14,7 +14,6 @@ public class DrivingTask implements Task {
 
     @Override
     public void executeTask() {
-        System.out.println(taskName + "is done.");
         taskExecuted = true;
     }
 
@@ -26,9 +25,11 @@ public class DrivingTask implements Task {
     @Override
     public boolean isTaskExecuted() {
         if (taskExecuted) {
+            System.out.println(taskName + " is done.");
             return true;
         } else {
-            return true;
+            System.out.println(taskName + " is not done.");
+            return false;
         }
     }
 }
