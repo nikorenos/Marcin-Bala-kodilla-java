@@ -72,8 +72,22 @@ FROM USERS U JOIN ISSUES I ON U.ID = I.USER_ID_ASSIGNEDTO
 GROUP BY I.USER_ID_ASSIGNEDTO
 HAVING COUNT(*) > 0;
 
+//wstawienie nowego postu, modyfikacja i usunięcie
+INSERT INTO POSTS (USER_ID, BODY)
+VALUES (1, "This is post to delete!");
 
+COMMIT;
 
+UPDATE POSTS
+SET BODY = "This is post to update!"
+WHERE ID = 7;
+
+COMMIT;
+
+DELETE FROM POSTS
+WHERE ID = 7;
+
+COMMIT;
 
 
 
