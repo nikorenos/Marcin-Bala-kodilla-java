@@ -1,8 +1,5 @@
 package com.kodilla.testing.JavaTest.test11;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 class Calculator {
     public long add(long a, long b) {
         return a + b;
@@ -16,7 +13,7 @@ class Calculator {
     }
 }
 
-class CalculatorTestSuite {
+/*class CalculatorTestSuite {
 
     @Test
     public void testAdd() {
@@ -27,4 +24,4 @@ class CalculatorTestSuite {
         //then
         Assert.assertEquals(357, result);
     }
-}	
+}*/
