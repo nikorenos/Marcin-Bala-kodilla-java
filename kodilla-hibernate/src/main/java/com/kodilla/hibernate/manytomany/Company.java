@@ -5,6 +5,12 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.findFirstThreeCharacters",
+                query = "SELECT * FROM COMPANIES", //+
+                //"WHERE NAME LIKE 'Grey Matter'",//LIKE CONCAT('%',Gre,'%')"
+        resultClass = Company.class
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
