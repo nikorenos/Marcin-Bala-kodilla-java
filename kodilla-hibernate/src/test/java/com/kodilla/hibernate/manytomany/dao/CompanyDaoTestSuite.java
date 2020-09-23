@@ -71,18 +71,21 @@ public class CompanyDaoTestSuite {
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
         Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+        Employee johnKovalsky = new Employee("John", "Kovalsky");
 
         Company softwareMachine = new Company("Software Machine");
         Company dataMaesters = new Company("Data Maesters");
         Company greyMatter = new Company("Grey Matter");
 
         softwareMachine.getEmployees().add(johnSmith);
+        softwareMachine.getEmployees().add(johnKovalsky);
         dataMaesters.getEmployees().add(stephanieClarckson);
         dataMaesters.getEmployees().add(lindaKovalsky);
         greyMatter.getEmployees().add(johnSmith);
         greyMatter.getEmployees().add(lindaKovalsky);
 
         johnSmith.getCompanies().add(softwareMachine);
+        johnKovalsky.getCompanies().add(softwareMachine);
         johnSmith.getCompanies().add(greyMatter);
         stephanieClarckson.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(dataMaesters);
@@ -96,15 +99,12 @@ public class CompanyDaoTestSuite {
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
 
-        List<Company> firstThreeCharacters = companyDao.findFirstThreeCharacters();
+        List<Company> firstThreeCharacters = companyDao.findFirstThreeCharacters("Sof");
         List<Employee> employeeLastname = employeeDao.findEmployeeLastname("Kovalsky");
 
         //Then
-        Assert.assertNotEquals(0, softwareMachineId);
-        Assert.assertNotEquals(0, dataMaestersId);
-        Assert.assertNotEquals(0, greyMatterId);
-        Assert.assertEquals(36, firstThreeCharacters.size());
-        Assert.assertEquals(12, employeeLastname.size());
+        Assert.assertEquals(1, firstThreeCharacters.size());
+        Assert.assertEquals(2, employeeLastname.size());
 
         //CleanUp
         try {
@@ -114,9 +114,5 @@ public class CompanyDaoTestSuite {
         } catch (Exception e) {
             //do nothing
         }
-
-        //companyDao.deleteById(323);
-        //companyDao.deleteById(325);
-        //companyDao.deleteById(327);
     }
 }

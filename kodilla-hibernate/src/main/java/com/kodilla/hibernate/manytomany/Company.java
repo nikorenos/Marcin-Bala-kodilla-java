@@ -7,8 +7,8 @@ import java.util.List;
 
 @NamedNativeQuery(
         name = "Company.findFirstThreeCharacters",
-                query = "SELECT * FROM COMPANIES", //+
-                //"WHERE NAME LIKE 'Grey Matter'",//LIKE CONCAT('%',Gre,'%')"
+                query = "SELECT * FROM COMPANIES" +
+                        " WHERE SUBSTRING(COMPANY_NAME,1,3) = :name",
         resultClass = Company.class
 )
 @Entity
