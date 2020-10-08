@@ -5,6 +5,7 @@ import java.util.*;
 public class RpsRunner {
 
     public void startGame () {
+        int round = 0;
 
         System.out.println("Starting rock-paper-scissors game!");
 
@@ -27,6 +28,61 @@ public class RpsRunner {
         System.out.println("Press x to quit the game.");
         System.out.println("Press n to start the game from the beginning.");
 
+
+        while (round < numberOfRounds) {
+            System.out.println("Round#" + round);
+
+            System.out.println("Select your move:");
+            String playerMove = myObj.nextLine();
+            System.out.println("Your choice is :" + playerMove);
+            if (playerMove.equals(1)) {
+                System.out.println("There is a draw!");
+            }
+
+            Random theGenerator = new Random();
+            int computerMove = theGenerator.nextInt(3);
+
+            switch (computerMove) {
+                case 0: //rock
+                    System.out.println("Computer move is: rock.");
+                    if (playerMove.equals("1")) {
+                        System.out.println("There is a draw!");
+                    }
+                    if (playerMove.equals("2")) {
+                        System.out.println("Paper beats rock, you won!");
+                    }
+                    if (playerMove.equals("3")) {
+                        System.out.println("Rock beats scissors, you lost!");
+                    }
+                    break;
+                case 1: //paper
+                    System.out.println("Computer move is: paper.");
+                    if (playerMove.equals("1")) {
+                        System.out.println("Paper beats rock, you lost!");
+                    }
+                    if (playerMove.equals("2")) {
+                        System.out.println("There is a draw!");
+                    }
+                    if (playerMove.equals("3")) {
+                        System.out.println("Scissors beats paper, you win!");
+                    }
+                    break;
+                    case 2: //scissors
+                    System.out.println("Computer move is: scissors.");
+                    if (playerMove.equals("1")) {
+                        System.out.println("Rock beats scissors, you win!");
+                    }
+                    if (playerMove.equals("2")) {
+                        System.out.println("Scissors beats paper, you lost!");
+                    }
+                    if (playerMove.equals("3")) {
+                        System.out.println("There is a draw!");
+                    }
+                    break;
+
+            }
+
+        }
     }
 
 
