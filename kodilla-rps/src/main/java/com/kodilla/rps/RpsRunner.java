@@ -29,8 +29,11 @@ public class RpsRunner {
         System.out.println("Press 2 for paper.");
         System.out.println("Press 3 for scissors.");
         System.out.println("Press x to quit the game.");
-        System.out.println("Press n to start the game from the beginning.");
+        System.out.println("Press s to start the game from the beginning.");
         System.out.println();
+        round = 1;
+        playerScore = 0;
+        computerScore = 0;
         game();
     }
 
@@ -48,6 +51,25 @@ public class RpsRunner {
             }
             if (playerMove.equals("3")) {
                 playerMoveDescription = "scissors";
+            }
+            if (playerMove.equals("x")) {
+                System.out.print("Are you sure you want to finish the game? Press y for yes, n for no: ");
+                String playerDecision = myObj.nextLine();
+                if (playerDecision.equals("y")) {
+                    System.out.println("Closing the game.");
+                    System.exit(0);
+                } else if (playerDecision.equals("n")) {
+                    game();
+                }
+            }
+            if (playerMove.equals("s")) {
+                System.out.print("Are you sure you want to start a new game? Press y for yes, n for no: ");
+                String playerDecision = myObj.nextLine();
+                if (playerDecision.equals("y")) {
+                    introduction();
+                } else if (playerDecision.equals("n")) {
+                    game();
+                }
             }
 
             System.out.println("Your move is: " + playerMoveDescription);
@@ -109,7 +131,7 @@ public class RpsRunner {
                     break;
             }
 
-            System.out.println("Round " + round + " score: you: " + playerScore + " ,computer: " + computerScore);
+            System.out.println("Round " + round + " score: " + userName + ": " + playerScore + " ,computer: " + computerScore);
             round = round + 1;
         }
         endGame();
@@ -117,8 +139,9 @@ public class RpsRunner {
 
     public void endGame() {
         System.out.println();
+        System.out.println("///////////////////////////////////////////////////////////////////////////");
         System.out.println("End of the game.");
-        System.out.print("Your score: " + playerScore + ", computer score: " + computerScore);
+        System.out.print(userName + " score: " + playerScore + ", computer score: " + computerScore);
         if (playerScore > computerScore) {
             System.out.println(". You win!");
         } else if (playerScore < computerScore) {
@@ -126,7 +149,16 @@ public class RpsRunner {
         } else {
             System.out.println(" There is a draw!");
         }
-        System.out.println("Press x to end the game, press n to start a new game:");
+        System.out.println("///////////////////////////////////////////////////////////////////////////");
+        System.out.print("Press x to end the game, press s to start a new game: ");
+
+        String playerDecision = myObj.nextLine();
+        if (playerDecision.equals("x")) {
+            System.out.println("Closing the game.");
+            System.exit(0);
+        } else if (playerDecision.equals("s")) {
+            introduction();
+            }
     }
 
 
