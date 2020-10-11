@@ -46,27 +46,27 @@ public class RpsRunner {
             System.out.print("Select your move: ");
             String playerMove = myObj.nextLine();
 
-            if (playerMove.equals("1")) {
+            if ("1".equals(playerMove)) {
                 playerMoveDescription = "rock";
-            } else if (playerMove.equals("2")) {
+            } else if ("2".equals(playerMove)) {
                 playerMoveDescription = "paper";
-            } else if (playerMove.equals("3")) {
+            } else if ("3".equals(playerMove)) {
                 playerMoveDescription = "scissors";
-            } else if (playerMove.equals("x")) {
+            } else if ("x".equals(playerMove)) {
                 System.out.print("Are you sure you want to finish the game? Press y for yes, n for no: ");
                 String playerDecision = myObj.nextLine();
-                if (playerDecision.equals("y")) {
+                if ("y".equals(playerDecision)) {
                     System.out.println("Closing the game.");
                     System.exit(0);
-                } else if (playerDecision.equals("n")) {
+                } else if ("n".equals(playerDecision)) {
                     game();
                 }
-            } else if (playerMove.equals("s")) {
+            } else if ("s".equals(playerMove)) {
                 System.out.print("Are you sure you want to start a new game? Press y for yes, n for no: ");
                 String playerDecision = myObj.nextLine();
-                if (playerDecision.equals("y")) {
+                if ("y".equals(playerDecision)) {
                     introduction();
-                } else if (playerDecision.equals("n")) {
+                } else if ("n".equals(playerDecision)) {
                     game();
                 }
             } else {
@@ -85,47 +85,47 @@ public class RpsRunner {
             switch (computerMove) {
                 case 1: //rock
                     System.out.println("Computer move is: rock.");
-                    if (playerMove.equals("1")) {
+                    if ("1".equals(playerMove)) {
                         System.out.println("There is a draw!");
                         playerScore = playerScore + 1;
                         computerScore = computerScore + 1;
                     }
-                    if (playerMove.equals("2")) {
+                    if ("2".equals(playerMove)) {
                         System.out.println("Paper beats rock, you won!");
                         playerScore = playerScore + 1;
                     }
-                    if (playerMove.equals("3")) {
+                    if ("3".equals(playerMove)) {
                         System.out.println("Rock beats scissors, you lost!");
                         computerScore = computerScore + 1;
                     }
                     break;
                 case 2: //paper
                     System.out.println("Computer move is: paper.");
-                    if (playerMove.equals("1")) {
+                    if ("1".equals(playerMove)) {
                         System.out.println("Paper beats rock, you lost!");
                         computerScore = computerScore + 1;
                     }
-                    if (playerMove.equals("2")) {
+                    if ("2".equals(playerMove)) {
                         System.out.println("There is a draw!");
                         playerScore = playerScore + 1;
                         computerScore = computerScore + 1;
                     }
-                    if (playerMove.equals("3")) {
+                    if ("3".equals(playerMove)) {
                         System.out.println("Scissors beats paper, you win!");
                         playerScore = playerScore + 1;
                     }
                     break;
                     case 3: //scissors
                     System.out.println("Computer move is: scissors.");
-                    if (playerMove.equals("1")) {
+                    if ("1".equals(playerMove)) {
                         System.out.println("Rock beats scissors, you win!");
                         playerScore = playerScore + 1;
                     }
-                    if (playerMove.equals("2")) {
+                    if ("2".equals(playerMove)) {
                         System.out.println("Scissors beats paper, you lost!");
                         computerScore = computerScore + 1;
                     }
-                    if (playerMove.equals("3")) {
+                    if ("3".equals(playerMove)) {
                         System.out.println("There is a draw!");
                         playerScore = playerScore + 1;
                         computerScore = computerScore + 1;
@@ -155,10 +155,10 @@ public class RpsRunner {
         System.out.print("Press x to end the game, press s to start a new game: ");
 
         String playerDecision = myObj.nextLine();
-        if (playerDecision.equals("x")) {
+        if ("x".equals(playerDecision)) {
             System.out.println("Closing the game.");
             System.exit(0);
-        } else if (playerDecision.equals("s")) {
+        } else if ("s".equals(playerDecision)) {
             introduction();
         }
     }
