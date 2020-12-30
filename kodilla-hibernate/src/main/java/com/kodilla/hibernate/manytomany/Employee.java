@@ -5,6 +5,12 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Employee.findPartOfTheName",
+        query = "SELECT * FROM EMPLOYEES" +
+                " WHERE LASTNAME LIKE :lastname",
+        resultClass = Employee.class
+)
 @NamedQueries({
         @NamedQuery(
                 name = "Employee.findEmployeeLastname",
