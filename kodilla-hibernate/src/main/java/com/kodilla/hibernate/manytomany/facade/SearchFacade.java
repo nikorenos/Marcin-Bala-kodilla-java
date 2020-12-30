@@ -18,7 +18,6 @@ public class SearchFacade {
     EmployeeDao employeeDao;
 
     public List<Company> searchCompany(String text) throws SearchProcessingException {
-        text = "%" + text + "%";
         if (text.length() < 3) {
             throw new SearchProcessingException(SearchProcessingException.ERR_TOO_SHORT_FRAZE);
         }
@@ -28,7 +27,6 @@ public class SearchFacade {
         return companyDao.findPartOfTheName(text);
     }
     public List<Employee> searchEmployee(String text) throws SearchProcessingException {
-        text = "%" + text + "%";
         if (text.length() < 3) {
             throw new SearchProcessingException(SearchProcessingException.ERR_TOO_SHORT_FRAZE);
         }
