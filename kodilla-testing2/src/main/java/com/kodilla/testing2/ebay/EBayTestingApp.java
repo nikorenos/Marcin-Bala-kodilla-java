@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class EBayTestingApp {
-    //lst-ib
     public static String SEARCHFIELD = "_nkw";
 
     public static void main(String[] args) {

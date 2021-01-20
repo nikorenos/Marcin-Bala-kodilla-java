@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class GoogleTestingApp {
-    //lst-ib
     public static String SEARCHFIELD = "q";
 
     public static void main(String[] args) {
