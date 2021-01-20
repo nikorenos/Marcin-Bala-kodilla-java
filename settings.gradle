@@ -12,4 +12,7 @@ include 'kodilla-jdbc'
 include 'kodilla-hibernate'
 include 'kodilla-rps'
 include 'kodilla-patterns2'
+include 'kodilla-testing2'
+include 'kodilla-testing2'
+include 'kodilla-testing3'
 
