@@ -32,9 +32,9 @@ public class CrudAppTestSuite {
     }
 
     private String createCrudAppTestTask() throws InterruptedException {
-        final String XPATH_TASK_NAME = "//form[contains(@action, \"createTask\")]/fieldset[1]/input[1]";
-        final String XPATH_TASK_CONTENT = "//form[contains(@action, \"createTask\")]/fieldset[2]/textarea";
-        final String XPATH_ADD_BUTTON = "//form[contains(@action, \"createTask\")]/fieldset[3]/button";
+        final String XPATH_TASK_NAME = "//form[contains(@action, \"tasks\")]/fieldset[1]/input[1]";
+        final String XPATH_TASK_CONTENT = "//form[contains(@action, \"tasks\")]/fieldset[2]/textarea";
+        final String XPATH_ADD_BUTTON = "//form[contains(@action, \"tasks\")]/fieldset[3]/button";
         String taskName = "Task number " + generator.nextInt(100000);
         String taskContent = taskName + " content";
 
@@ -70,6 +70,8 @@ public class CrudAppTestSuite {
                             buttonCreateCard.click();
                         });
         Thread.sleep(5000);
+        driver.switchTo().alert().accept();
+        driver.close();
     }
 
     private void deleteTaskFromCrudApp(String taskName) {
